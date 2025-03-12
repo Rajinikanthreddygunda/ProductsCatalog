@@ -33,3 +33,16 @@ func (h Handler) CreateHandler(db *sql.DB) http.HandlerFunc {
 		w.WriteHeader(http.StatusOK)
 	}
 }
+// GetHandler - GET /products
+func (h Handler) GetHandler(db *sql.DB) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		products, err := h.biz.GetProductsLogic()
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(products)
+	}
+}
