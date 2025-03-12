@@ -8,6 +8,7 @@ import (
 
 type IBizlogic interface {
 	CreateBookLogic(product model.Product) error
+	GetProductsLogic() ([]model.Product, error)
 }
 
 type Bizlogic struct {
@@ -20,4 +21,7 @@ func NewBizlogic(db *sql.DB) *Bizlogic {
 
 func (bl *Bizlogic) CreateBookLogic(product model.Product) error {
 	return database.CreateBook(bl.DB, product)
+}
+func (bl *Bizlogic) GetProductsLogic() ([]model.Product, error) {
+	return database.GetProducts(bl.DB)
 }
