@@ -1,7 +1,7 @@
 package main
 
 import (
-	api "apipro/Products"
+	products "apipro/Products"
 	"database/sql"
 	"fmt"
 	"log"
@@ -23,7 +23,7 @@ func main() {
 		log.Fatal("database connection error:", err)
 	}
 	fmt.Println("Database connection successful")
-	api.RegisterRoutes(db)
+	products.RegisterRoutes(db)
 	fmt.Println("Sent request to routes")
 
 	log.Println("Server starting on port 8080...")
