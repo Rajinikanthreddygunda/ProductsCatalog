@@ -16,12 +16,13 @@ type Bizlogic struct {
 	DB *sql.DB
 }
 
-func NewBizlogic(db *sql.DB) IBizlogic { // Return interface instead of struct pointer
-	return &Bizlogic{DB: db}
+// CreateBookLogic implements IBizlogic.
+func (bl *Bizlogic) CreateBookLogic(product model.Product) error {
+	panic("unimplemented")
 }
 
-func (bl *Bizlogic) CreateBookLogic(product model.Product) error {
-	return database.CreateBook(bl.DB, product)
+func NewBizlogic(db *sql.DB) IBizlogic { // Return interface instead of struct pointer
+	return &Bizlogic{DB: db}
 }
 
 // GetProductLogic retrieves a product by ID.

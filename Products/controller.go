@@ -1,7 +1,6 @@
 package api
 
 import (
-	"apipro/model"
 	"database/sql"
 	"encoding/json"
 	"net/http"
@@ -15,25 +14,6 @@ type Handler struct {
 
 func NewHandler(db *sql.DB) Handler {
 	return Handler{biz: NewBizlogic(db)} // Now correctly assigns an IBizlogic instance
-}
-
-func (h Handler) CreateHandler(db *sql.DB) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		if r.Method != http.MethodPost {
-			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-			return
-		}
-
-		var product model.Product
-		if err := json.NewDecoder(r.Body).Decode(&product); err != nil {
-			http.Error(w, err.Error(), http.StatusBadRequest)
-		}
-
-		if err := h.biz.CreateBookLogic(product); err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-		}
-		w.WriteHeader(http.StatusOK)
-	}
 }
 
 // GetProductHandler handles the GET request to retrieve a product by ID.
