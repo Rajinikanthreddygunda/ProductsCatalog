@@ -7,4 +7,5 @@ import (
 
 func RegisterRoutes(db *sql.DB) {
 	h := NewHandler(db)
+	http.HandleFunc("/products", h.CreateHandler(db))
 }
