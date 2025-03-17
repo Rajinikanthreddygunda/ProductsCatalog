@@ -1,13 +1,12 @@
-package api
+package Products
 
 import (
 	"apipro/database"
-	"apipro/model"
 	"database/sql"
 )
 
 type IBizlogic interface {
-	CreateBookLogic(product model.Product) error
+	UpdateProductLogic(id int, updates map[string]interface{}) error
 }
 
 type Bizlogic struct {
@@ -18,6 +17,6 @@ func NewBizlogic(db *sql.DB) *Bizlogic {
 	return &Bizlogic{DB: db}
 }
 
-func (bl *Bizlogic) CreateBookLogic(product model.Product) error {
-	return database.CreateBook(bl.DB, product)
+func (bl *Bizlogic) UpdateProductLogic(id int, updates map[string]interface{}) error {
+	return database.UpdateProduct(bl.DB, id, updates) // Now matches exactly
 }

@@ -1,4 +1,4 @@
-package api
+package Products
 
 import (
 	"database/sql"
@@ -6,6 +6,6 @@ import (
 )
 
 func RegisterRoutes(db *sql.DB) {
-	h := NewHandler(db) //newline
-	http.HandleFunc("/products", h.CreateHandler(db))
+	h := NewHandler(db)
+	http.HandleFunc("/products/update", h.UpdateHandler()) // PUT - Update Product
 }
