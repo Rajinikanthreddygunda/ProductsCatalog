@@ -21,3 +21,4 @@ func NewBizlogic(db *sql.DB) *Bizlogic {
 func (bl *Bizlogic) CreateProductLogic(product model.Product) error {
 	return database.CreateProduct(bl.DB, product)
 }
+

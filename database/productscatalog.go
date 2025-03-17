@@ -15,3 +15,4 @@ func CreateProduct(db *sql.DB, Product model.Product) error {
 	}
 	return nil
 }
+

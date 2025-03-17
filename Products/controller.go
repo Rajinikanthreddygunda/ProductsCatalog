@@ -33,3 +33,4 @@ func (h Handler) CreateHandler(db *sql.DB) http.HandlerFunc {
 		w.WriteHeader(http.StatusOK)
 	}
 }
+
